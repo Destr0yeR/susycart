@@ -5,17 +5,9 @@ public class Carrera : MonoBehaviour {
 
 	// Use this for initialization
 
-	private float recorrido;
+	public float recorrido;
 	public float velocity;
-
-	public float Velocity {
-		get {
-			return velocity;
-		}
-		set {
-			velocity = value;
-		}
-	}
+	public int puesto;
 
 	void Start () 
 	{
@@ -25,16 +17,19 @@ public class Carrera : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		recorrido += velocity*Time.deltaTime;
+		recorrido += velocity * Time.deltaTime;
 	}
+
 	public float getRecorrido()
 	{
 		return recorrido;
 	}
+
 	public void setVelocity(float v)
 	{
 		velocity = v;
 	}
+
 	IEnumerator reduceVelocity()
 	{
 		while(velocity>0)
