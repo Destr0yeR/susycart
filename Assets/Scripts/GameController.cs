@@ -22,12 +22,13 @@ public class GameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		Distancia susanaDistancia 		= susana.GetComponent<Distancia>();
-		Distancia locoDistancia 		= loco.GetComponent<Distancia>();
-		Distancia cornejoDistancia 		= cornejo.GetComponent<Distancia>();
-		Distancia castañedaDistancia 	= castañeda.GetComponent<Distancia>();
+		Carrera susanaDistancia = susana.GetComponent<Carrera>();
+		Carrera locoDistancia = loco.GetComponent<Carrera>();
+		Carrera cornejoDistancia = cornejo.GetComponent<Carrera>();
+		Carrera castañedaDistancia = castañeda.GetComponent<Carrera>();
 
 		Debug.Log(susanaDistancia.getRecorrido());
+		
 		if(!hayGanador)
 		{
 			if (susanaDistancia.getRecorrido() > distancia)

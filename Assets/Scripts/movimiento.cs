@@ -27,7 +27,7 @@ public class Movimiento : MonoBehaviour {
 
 	void revisarInput()
 	{
-		if(Input.GetKeyUp("a") && !isLeft)
+		if(Input.GetKeyDown("a") && !isLeft)
 		{
 			if(isCenter)
 			{
@@ -41,7 +41,7 @@ public class Movimiento : MonoBehaviour {
 			}
 			transform.position = new Vector3(CarrilL.position.x,transform.position.y,transform.position.z);
 		}
-		if(Input.GetKeyUp("d") && !isRight)
+		if(Input.GetKeyDown("d") && !isRight)
 		{
 			if(isCenter)
 			{
