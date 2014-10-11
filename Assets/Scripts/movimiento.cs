@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class movimiento : MonoBehaviour {
+public class Movimiento : MonoBehaviour {
 
 	// Use this for initialization
 	public Transform CarrilL;
@@ -12,14 +12,16 @@ public class movimiento : MonoBehaviour {
 	private bool isCenter;
 	private bool isRight;
 
-	void Start () {
+	void Start () 
+	{
 		isLeft = false;
 		isCenter = true;
 		isRight = false;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 		revisarInput();
 	}
 
@@ -54,5 +56,4 @@ public class movimiento : MonoBehaviour {
 			transform.position = new Vector3(CarrilR.position.x,transform.position.y,transform.position.z);
 		}
 	}
-
 }
