@@ -3,8 +3,7 @@ using System.Collections;
 
 public class GameController : MonoBehaviour {
 
-	// Use this for initialization
-
+	private static GameController instancia;
 	public GameObject[] jugadores = new GameObject[4];
 	private Carrera[] carreras = new Carrera[4];
 
@@ -17,6 +16,11 @@ public class GameController : MonoBehaviour {
 	private bool puede_verificar_puesto;
 
 	public float distancia;
+
+	void Awake()
+	{
+		instancia = this;
+	}
 
 	void Start () 
 	{
@@ -106,5 +110,11 @@ public class GameController : MonoBehaviour {
 	public Carrera getCarreraLoco()
 	{
 		return carreras[_LOCO];
+	}
+
+	public static GameController Instancia {
+		get {
+			return instancia;
+		}
 	}
 }
