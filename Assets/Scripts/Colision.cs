@@ -14,13 +14,11 @@ public class Colision : MonoBehaviour {
 			{
 				carrera = gameObject.GetComponent<Carrera>();
 				carrera.StartCoroutine("reduceVelocity");
-				Debug.Log("Chocando");
 			}
 			if(gameObject.tag == "Barrera")
 			{
 				Special special = Player.gameObject.GetComponent<Special>();
 				special.AgregarCarga();
-				Debug.Log("Barreando");
 			}
 			Destroy(other.gameObject);
 		} 

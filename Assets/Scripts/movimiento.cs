@@ -21,7 +21,6 @@ public class Movimiento : MonoBehaviour {
 
 	void mover_derecha()
 	{
-		Debug.Log("derecheando");
 		if(isRight == false)
 		{
 			if(isCenter == true)
@@ -40,7 +39,6 @@ public class Movimiento : MonoBehaviour {
 
 	void mover_izquierda()
 	{
-		Debug.Log("izquierdando");
 		if(isLeft == false)
 		{
 			if(isCenter == true)
