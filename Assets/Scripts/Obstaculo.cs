@@ -11,7 +11,7 @@ public class Obstaculo : MonoBehaviour {
 
 	void Start () 
 	{
-		escala = 0.001f;
+		//escala = 0.001f;
 	}
 
 	public void setVelocity(Vector2 velocidad)
@@ -27,8 +27,8 @@ public class Obstaculo : MonoBehaviour {
 	void Update () {
 
 		//Debug.Log (rigidbody2D.velocity);
-		escala *= 1.15f;
-		transform.localScale += new Vector3(escala,escala,1);
+		//escala *= 1.15f;
+		//transform.localScale += new Vector3(escala,escala,1);
 	}
 
 

@@ -4,6 +4,7 @@ using System.Collections;
 public class Colision : MonoBehaviour {
 
 	Carrera carrera;
+	Special special;
 	public GameObject Player;
 
 	void OnCollisionEnter2D(Collision2D other)
@@ -14,11 +15,13 @@ public class Colision : MonoBehaviour {
 			{
 				carrera = gameObject.GetComponent<Carrera>();
 				carrera.StartCoroutine("reduceVelocity");
+				special = gameObject.GetComponent<Special>();
+				special.ResetearBarra();
 			}
 			if(gameObject.tag == "Barrera")
 			{
-				Special special = Player.gameObject.GetComponent<Special>();
-				special.AgregarCarga();
+				special = Player.gameObject.GetComponent<Special>();
+				special.AgregarBarra();
 			}
 			Destroy(other.gameObject);
 		} 
