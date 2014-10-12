@@ -8,6 +8,7 @@ public class Special : MonoBehaviour {
 	private int cargas;
 	private int barras;
 	public int maxBarras;
+	public int maxCargas;
 
 	void Start () 
 	{
@@ -19,10 +20,16 @@ public class Special : MonoBehaviour {
 	void Update () 
 	{
 		CheckBarras();
-		if (cargas > 10) 
+		if (cargas > 0 || barras > 0) 
 		{
-			Debug.Log("bla bla cargas");
+			Debug.Log (cargas);
+			Debug.Log (barras);
 		}
+		if (cargas == 3) 
+		{
+			Debug.Log("puto");
+		}
+
 	}
 
 	void CheckBarras()
@@ -32,10 +39,21 @@ public class Special : MonoBehaviour {
 			cargas += barras/maxBarras;
 			barras  = barras%maxBarras;
 		}
+		if (cargas == maxCargas) 
+		{
+			barras = 0;
+		}
 	}
 
-	public void AgregarCarga()
+	public void AgregarBarra()
 	{
-		cargas += 1;
+		if (cargas < maxCargas) 
+		{
+			barras += 1;
+		}
+	}
+	public void ResetearBarra()
+	{
+		barras = 0;
 	}
 }

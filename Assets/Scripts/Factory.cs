@@ -72,7 +72,7 @@ public class Factory : MonoBehaviour {
 				if(!ocupadoCarril1)
 				{
 					position = CarrilL;
-					velocity = new Vector2(-1.5f,-4.0f);
+					velocity = new Vector2(-2.2f,-3.0f);
 					ocupadoCarril1 = true;
 					hecho = true;
 				}
@@ -82,7 +82,7 @@ public class Factory : MonoBehaviour {
 				if(!ocupadoCarril2)
 				{
 					position = CarrilC;
-					velocity = new Vector2(0.0f,-4.0f);
+					velocity = new Vector2(0.0f,-3.0f);
 					ocupadoCarril2 = true;
 					hecho = true;
 				}
@@ -92,7 +92,7 @@ public class Factory : MonoBehaviour {
 				if(!ocupadoCarril3)
 				{
 					position = CarrilR;
-					velocity = new Vector2(1.5f,-4.0f);
+					velocity = new Vector2(2.2f,-3.0f);
 					ocupadoCarril3 = true;
 					hecho = true;
 				}
