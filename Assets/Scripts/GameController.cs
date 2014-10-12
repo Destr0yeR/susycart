@@ -5,8 +5,10 @@ public class GameController : MonoBehaviour {
 
 	private static GameController instancia;
 	public GameObject[] jugadores = new GameObject[4];
-	private Carrera[] carreras = new Carrera[4];
+	public GameObject[] pistas = new GameObject[4];
 
+	private Carrera[] carreras = new Carrera[4];
+	
 	private const int _TIA = 0;
 	private const int _MUDO = 1;
 	private const int _BIGOTE = 2;
@@ -32,6 +34,11 @@ public class GameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		if(Input.GetKeyDown("space"))
+		{
+			gameObject.GetComponent<QTEManager>().iniciar_ronda();
+		}
+
 		verificar_ganador();
 		if(puede_verificar_puesto == true)
 		{
@@ -46,18 +53,22 @@ public class GameController : MonoBehaviour {
 			if (carreras[_TIA].getRecorrido() > distancia)
 			{
 				hayGanador = true;
+				Debug.Log("TIA GANA");
 			}
 			else if (carreras[_MUDO].getRecorrido() > distancia)
 			{
 				hayGanador = true;
+				Debug.Log("MUDO GANA");
 			}
 			else if (carreras[_BIGOTE].getRecorrido() > distancia)
 			{
 				hayGanador = true;
+				Debug.Log("BIGOTE GANA");
 			}
 			else if (carreras[_LOCO].getRecorrido() > distancia)
 			{
 				hayGanador = true;
+				Debug.Log("LOCO GANA");
 			}
 		}
 	}
@@ -153,6 +164,19 @@ public class GameController : MonoBehaviour {
 			case _MUDO: return jugadores[_MUDO]; break;
 			case _BIGOTE: return jugadores[_BIGOTE]; break;
 			case _LOCO: return jugadores[_LOCO]; break;
+		}
+		
+		return null;
+	}
+
+	public GameObject getPistaIndex(int index)
+	{
+		switch(index)
+		{
+			case _TIA: return pistas[_TIA]; break;
+			case _MUDO: return pistas[_MUDO]; break;
+			case _BIGOTE: return pistas[_BIGOTE]; break;
+			case _LOCO: return pistas[_LOCO]; break;
 		}
 		
 		return null;

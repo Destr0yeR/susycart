@@ -77,42 +77,22 @@ public class JugadorInput : MonoBehaviour {
 
 		if(Input.GetKeyDown(_SQUARE))
 		{
-			presiono_cuadrado();
+			GameController.Instancia.getJugadorIndex(num_jugador-1).SendMessage("presionar_cuadrado");
 		}
 
 		if(Input.GetKeyDown(_CROSS))
 		{
-			presiono_equis();
+			GameController.Instancia.getJugadorIndex(num_jugador-1).SendMessage("presionar_equis");
 		}
 
 		if(Input.GetKeyDown(_CIRCLE))
 		{
-			presiono_circulo();
+			GameController.Instancia.getJugadorIndex(num_jugador-1).SendMessage("presionar_circulo");
 		}
 
 		if(Input.GetKeyDown(_TRIANGLE))
 		{
-			presiono_triangulo();
+			GameController.Instancia.getJugadorIndex(num_jugador-1).SendMessage("presionar_triangulo");
 		}
-	}
-
-	void presiono_cuadrado ()
-	{
-
-	}
-
-	void presiono_equis ()
-	{
-
-	}
-	
-	void presiono_circulo ()
-	{
-
-	}
-
-	void presiono_triangulo ()
-	{
-
 	}
 }

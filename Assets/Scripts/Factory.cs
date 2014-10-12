@@ -2,27 +2,30 @@ using UnityEngine;
 using System.Collections;
 
 public class Factory : MonoBehaviour {
-
+	
 	// Use this for initialization
-
+	
 	public float tiempo;
 	private float tiempoIteracion;
-
+	
 	public GameObject prefab_roca;
-
+	public GameObject barrera;
+	
 	private GameObject[] obstaculos = new GameObject[2];
-
+	
 	private int numero;
 	public bool activado;
-
+	
 	private bool ocupadoCarril1;
 	private bool ocupadoCarril2;
 	private bool ocupadoCarril3;
-
+	
 	public Transform CarrilL;
 	public Transform CarrilC;
 	public Transform CarrilR;
-
+	
+	private 
+		
 	void Start () {
 		activado = true;
 		ocupadoCarril1 = false;
@@ -39,15 +42,24 @@ public class Factory : MonoBehaviour {
 			if(tiempoIteracion > tiempo )
 			{
 				float random = 2.0f * Random.value;
-
+				
+				Colision colision = barrera.GetComponent<Colision> ();
+				colision.resetChoques();
+				
 				obstaculos[0] = Instantiate(prefab_roca) as GameObject;
 				setAtributos(obstaculos[0]);
-
-				obstaculos[1] = Instantiate(prefab_roca) as GameObject;
-				setAtributos(obstaculos[1]);
-
+				int obs = 1;
+				if(random >= 1.0f )
+				{
+					obstaculos[1] = Instantiate(prefab_roca) as GameObject;
+					setAtributos(obstaculos[1]);
+					obs = 2;
+				}
+				
+				colision.setObstaculos(obs);
+				
 				tiempoIteracion = 0.0f;
-
+				
 				ocupadoCarril1 = false;
 				ocupadoCarril2 = false;
 				ocupadoCarril3 = false;
@@ -55,15 +67,15 @@ public class Factory : MonoBehaviour {
 			tiempoIteracion += Time.deltaTime;  
 		}
 	}
-
+	
 	void setAtributos(GameObject Instancia)
 	{
 		Vector2 velocity = new Vector2(0,0);
 		Transform position = CarrilC;
 		bool hecho = false;
-
+		
 		Obstaculo obstaculo = Instancia.GetComponent<Obstaculo> ();
-
+		
 		do
 		{
 			float random = 3.0f * Random.value;
@@ -99,8 +111,9 @@ public class Factory : MonoBehaviour {
 			}
 		}
 		while(!hecho);
-
+		
 		obstaculo.setVelocity (velocity);
 		obstaculo.setPosition (position);
+		
 	}
 }
