@@ -18,42 +18,42 @@ public class Movimiento : MonoBehaviour {
 		isCenter = true;
 		isRight = false;
 	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-		revisarInput();
-	}
 
-	void revisarInput()
+	void mover_derecha()
 	{
-		if(Input.GetKeyDown("a") && !isLeft)
+		Debug.Log("derecheando");
+		if(isRight == false)
 		{
-			if(isCenter)
-			{
-				isLeft = true;
-				isCenter = false;
-			}
-			if(isRight)
-			{
-				isRight = false;
-				isCenter = true;
-			}
-			transform.position = new Vector3(CarrilL.position.x,transform.position.y,transform.position.z);
-		}
-		if(Input.GetKeyDown("d") && !isRight)
-		{
-			if(isCenter)
+			if(isCenter == true)
 			{
 				isRight = true;
 				isCenter = false;
 			}
-			if(isLeft)
+			if(isLeft == true)
 			{
 				isLeft = false;
 				isCenter = true;
 			}
 			transform.position = new Vector3(CarrilR.position.x,transform.position.y,transform.position.z);
+		}
+	}
+
+	void mover_izquierda()
+	{
+		Debug.Log("izquierdando");
+		if(isLeft == false)
+		{
+			if(isCenter == true)
+			{
+				isLeft = true;
+				isCenter = false;
+			}
+			if(isRight == true)
+			{
+				isRight = false;
+				isCenter = true;
+			}
+			transform.position = new Vector3(CarrilL.position.x,transform.position.y,transform.position.z);
 		}
 	}
 }

@@ -19,6 +19,10 @@ public class Special : MonoBehaviour {
 	void Update () 
 	{
 		CheckBarras();
+		if (cargas > 10) 
+		{
+			Debug.Log("bla bla cargas");
+		}
 	}
 
 	void CheckBarras()
@@ -28,5 +32,10 @@ public class Special : MonoBehaviour {
 			cargas += barras/maxBarras;
 			barras  = barras%maxBarras;
 		}
+	}
+
+	public void AgregarCarga()
+	{
+		cargas += 1;
 	}
 }

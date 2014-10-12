@@ -92,7 +92,20 @@ public class GameController : MonoBehaviour {
 		carreras[_LOCO] = jugadores[_LOCO].GetComponent<Carrera>();
 	}
 
-	public Carrera getCarreraSusy()
+	public Carrera getCarreraIndex(int index)
+	{
+		switch(index)
+		{
+			case _TIA: return carreras[_TIA]; break;
+			case _MUDO: return carreras[_MUDO]; break;
+			case _BIGOTE: return carreras[_BIGOTE]; break;
+			case _LOCO: return carreras[_LOCO]; break;
+		}
+
+		return null;
+	}
+
+	public Carrera getCarreraTia()
 	{
 		return carreras[_TIA];
 	}
@@ -110,6 +123,39 @@ public class GameController : MonoBehaviour {
 	public Carrera getCarreraLoco()
 	{
 		return carreras[_LOCO];
+	}
+
+	public GameObject getTia()
+	{
+		return jugadores[_TIA];
+	}
+
+	public GameObject getMudo()
+	{
+		return jugadores[_MUDO];
+	}
+
+	public GameObject getBigote()
+	{
+		return jugadores[_BIGOTE];
+	}
+
+	public GameObject getLoco()
+	{
+		return jugadores[_LOCO];
+	}
+
+	public GameObject getJugadorIndex(int index)
+	{
+		switch(index)
+		{
+			case _TIA: return jugadores[_TIA]; break;
+			case _MUDO: return jugadores[_MUDO]; break;
+			case _BIGOTE: return jugadores[_BIGOTE]; break;
+			case _LOCO: return jugadores[_LOCO]; break;
+		}
+		
+		return null;
 	}
 
 	public static GameController Instancia {

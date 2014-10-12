@@ -4,15 +4,23 @@ using System.Collections;
 public class Colision : MonoBehaviour {
 
 	Carrera carrera;
+	public GameObject Player;
 
-	void onCollisionEnter2D(Collider2D other)
+	void OnCollisionEnter2D(Collision2D other)
 	{
-		if (other.gameObject.tag == "Player") 
+		if (other.gameObject.tag == "Obstaculo") 
 		{
-			GameObject Player = other.gameObject;
-			carrera = Player.GetComponent<Carrera>();
-			carrera.StartCoroutine("reduceVelocity");
-			Destroy(gameObject);
+			if(gameObject.tag == "Player")
+			{
+				carrera = gameObject.GetComponent<Carrera>();
+				carrera.StartCoroutine("reduceVelocity");
+			}
+			if(gameObject.tag == "Finish")
+			{
+				Special special = Player.gameObject.GetComponent<Special>();
+				special.AgregarCarga();
+			}
+			Destroy(other.gameObject);
 		} 
 	}
 }

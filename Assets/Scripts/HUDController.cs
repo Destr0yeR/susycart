@@ -16,7 +16,7 @@ public class HUDController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		texto_susy.text = GameController.Instancia.getCarreraSusy().puesto + "/4";
+		texto_susy.text = GameController.Instancia.getCarreraTia().puesto + "/4";
 		texto_mudo.text = GameController.Instancia.getCarreraMudo().puesto + "/4";
 		texto_bigote.text = GameController.Instancia.getCarreraBigote().puesto + "/4";
 		texto_loco.text = GameController.Instancia.getCarreraLoco().puesto + "/4";
