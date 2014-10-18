@@ -19,6 +19,12 @@ public class GameController : MonoBehaviour {
 
 	public float distancia;
 
+	public GameObject go_especial;
+	public Sprite spr_bigote;
+	public Sprite spr_tia;
+	public Sprite spr_mudo;
+	public Sprite spr_loco;
+	
 	void Awake()
 	{
 		instancia = this;
@@ -114,6 +120,28 @@ public class GameController : MonoBehaviour {
 		}
 
 		return null;
+	}
+
+	public void mostrar_especial (int num_jugador)
+	{	
+		switch(num_jugador)
+		{
+			case 1: go_especial.GetComponent<SpriteRenderer>().sprite = spr_tia; break;
+			case 2: go_especial.GetComponent<SpriteRenderer>().sprite = spr_mudo; break;
+			case 3: go_especial.GetComponent<SpriteRenderer>().sprite = spr_bigote; break;
+			case 4: go_especial.GetComponent<SpriteRenderer>().sprite = spr_loco; break;
+		}
+
+		StartCoroutine("mover_especial");
+	}
+
+	IEnumerator mover_especial()
+	{
+		HUDController.instancia.puede_renderizar = false;
+		go_especial.transform.position = new Vector3(0,0,-5);
+		yield return new WaitForSeconds(0.5f);
+		HUDController.instancia.puede_renderizar = true;
+		go_especial.transform.position = new Vector3(20,0,-5);
 	}
 
 	public Carrera getCarreraTia()

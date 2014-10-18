@@ -43,16 +43,15 @@ public class ValidadorQTE : MonoBehaviour {
 	{
 		StopCoroutine("empezar_timer");
 		leToca = false;
-		QTEManager.Instancia.asignar_QTE_siguiente();
+		QTEManager.Instancia.declarar_acierto(num_jugador);
 	}
 	
 	void fallar ()
 	{
-		QTEManager.Instancia.declarar_error(num_jugador);
-
 		activo = false;
 		haPerdido = true;
 		leToca = false;
+		QTEManager.Instancia.declarar_error(num_jugador);
 	}
 
 	IEnumerator empezar_timer()

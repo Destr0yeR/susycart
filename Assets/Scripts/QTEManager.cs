@@ -15,6 +15,8 @@ public class QTEManager : MonoBehaviour {
 	private int jugador_actual;
 	private int jugadores_activos;
 
+	private int num_rondas;
+
 	public FaceButtons facebuttons;
 
 	public GameObject prefab_velo;
@@ -28,7 +30,7 @@ public class QTEManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-
+		num_rondas = 1;
 	}
 	
 	// Update is called once per frame
@@ -39,6 +41,7 @@ public class QTEManager : MonoBehaviour {
 
 	public void iniciar_ronda()
 	{
+		facebuttons.Puede_palpitar = true;
 		activar_jugadores();
 		asignar_QTE(_TIA, Random.Range(0,4));
 	}
@@ -71,28 +74,66 @@ public class QTEManager : MonoBehaviour {
 
 	public void asignar_QTE_siguiente()
 	{
-		if(jugadores_activos > 0)
+		if(num_rondas < 5)
 		{
-			do
+			if(jugadores_activos > 0)
 			{
-				jugador_actual = (jugador_actual + 1)%4;
+				do
+				{
+					if(jugador_actual + 1 > 4)
+					{
+						num_rondas += 1;
+					}
+					jugador_actual = (jugador_actual + 1)%4;
+				}
+				while(GameController.Instancia.getJugadorIndex(jugador_actual).GetComponent<ValidadorQTE>().HaPerdido == true);
+				facebuttons.resetear_escalas();
+				asignar_QTE(jugador_actual, Random.Range(0,4));
 			}
-			while(GameController.Instancia.getJugadorIndex(jugador_actual).GetComponent<ValidadorQTE>().HaPerdido == true);
-			facebuttons.resetear_escalas();
-			asignar_QTE(jugador_actual, Random.Range(0,4));
-		}
-		else
-		{
-			facebuttons.resetear_escalas();
+			else
+			{
+				facebuttons.resetear_escalas();
+			}
 		}
 	}
 
 	public void declarar_error (int jugador)
 	{
-		QTEManager.Instancia.Jugadores_activos -= 1;
+		jugadores_activos -= 1;
 		velos[jugador-1] = Instantiate(prefab_velo, new Vector3(-4.5f + ((jugador-1)%2) * 9, 2.5f - ((jugador-1)/2) * 5,-3), Quaternion.identity) as GameObject;
+	
+		if(jugadores_activos > 0)
+		{
+			QTEManager.Instancia.asignar_QTE_siguiente();
+		}
+		else
+		{
+			facebuttons.desactivar();
+			facebuttons.transform.position = new Vector3(0,10,-3);
+			for(int i=velos.Length-1; i>=0; i--)
+			{
+				Destroy(velos[i]);
+			}
+		}
 
-		QTEManager.Instancia.asignar_QTE_siguiente();
+	}
+
+	public void declarar_acierto (int num_jugador)
+	{
+		if(jugadores_activos == 1)
+		{
+			facebuttons.desactivar();
+			facebuttons.transform.position = new Vector3(0,10,-3);
+			for(int i=velos.Length-1; i>=0; i--)
+			{
+				Destroy(velos[i]);
+			}
+			GameController.Instancia.mostrar_especial(num_jugador);
+		}
+		else
+		{
+			QTEManager.Instancia.asignar_QTE_siguiente();
+		}
 	}
 
 	public static QTEManager Instancia 

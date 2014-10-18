@@ -58,7 +58,8 @@ public class FaceButtons : MonoBehaviour {
 
 	public void desactivar()
 	{
-
+		StopAllCoroutines();
+		boton_activo = null;
 	}
 
 	public void resetear_escalas()
@@ -66,6 +67,15 @@ public class FaceButtons : MonoBehaviour {
 		for(int i=0; i<transform.childCount; i++)
 		{
 			transform.GetChild(i).transform.localScale = new Vector3(1,1,1);
+		}
+	}
+
+	public bool Puede_palpitar {
+		get {
+			return puede_palpitar;
+		}
+		set {
+			puede_palpitar = value;
 		}
 	}
 }

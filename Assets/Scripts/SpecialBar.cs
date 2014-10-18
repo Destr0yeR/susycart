@@ -17,6 +17,5 @@ public class SpecialBar : MonoBehaviour {
 	void Update () {
 		total = special.barrasTotal ();
 		gameObject.GetComponent<SpriteRenderer>().sprite = barras[total];
-		Debug.Log(total);
 	}
 }
